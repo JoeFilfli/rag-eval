@@ -1,0 +1,230 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f5f6f8;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+header { text-align: center; }
+header h1 { font-size: 2rem; font-weight: 700; color: #1a1a2e; }
+.subtitle { color: #666; margin-top: 0.25rem; font-size: 0.95rem; }
+
+.panel {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.panel h2 { font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; color: #888; text-transform: uppercase; letter-spacing: 0.07em; }
+
+/* Top row: upload + docs side by side */
+.top-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* Upload */
+.upload-area input[type="file"] { display: block; margin-bottom: 0.75rem; }
+.status { font-size: 0.9rem; margin-top: 0.5rem; }
+.status.loading { color: #888; }
+.status.success { color: #2e7d32; }
+.status.error { color: #c62828; }
+
+/* Indexed documents */
+.doc-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.doc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  background: #f8f9ff;
+  border: 1px solid #e8eaf6;
+  border-radius: 8px;
+  font-size: 0.875rem;
+}
+.doc-name { color: #1a1a2e; font-weight: 500; word-break: break-all; flex: 1; }
+.doc-row-right { display: flex; align-items: center; gap: 0.6rem; white-space: nowrap; }
+.doc-chunks { color: #888; font-size: 0.8rem; }
+.doc-delete {
+  background: none;
+  border: none;
+  color: #bbb;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  line-height: 1;
+  transition: color 0.15s, background 0.15s;
+}
+.doc-delete:hover { color: #c62828; background: #fdecea; }
+.doc-delete:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* Query */
+.query-form { display: flex; gap: 0.75rem; }
+.query-form input {
+  flex: 1;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.query-form input:focus { border-color: #4f46e5; }
+.query-form button {
+  padding: 0.6rem 1.25rem;
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.query-form button:disabled { background: #a5b4fc; cursor: not-allowed; }
+
+.eval-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  font-size: 0.875rem;
+  color: #555;
+  cursor: pointer;
+  user-select: none;
+}
+.eval-toggle input { cursor: pointer; }
+.eval-note { color: #aaa; font-size: 0.8rem; }
+
+.result { margin-top: 1.25rem; }
+.low-confidence {
+  font-size: 0.85rem;
+  color: #b45309;
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  border-radius: 6px;
+  padding: 0.4rem 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Markdown answer */
+.answer {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: #1a1a2e;
+}
+.answer p { margin-bottom: 0.75rem; }
+.answer p:last-child { margin-bottom: 0; }
+.answer h1, .answer h2, .answer h3 {
+  margin: 1.25rem 0 0.5rem;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+.answer h1 { font-size: 1.2rem; }
+.answer h2 { font-size: 1.05rem; }
+.answer h3 { font-size: 0.95rem; }
+.answer ul, .answer ol {
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.answer li { margin-bottom: 0.25rem; }
+.answer strong { font-weight: 600; }
+.answer em { font-style: italic; }
+.answer code {
+  background: #f0f0f5;
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.875em;
+}
+.answer pre {
+  background: #f0f0f5;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 0.75rem;
+}
+.answer pre code { background: none; padding: 0; }
+.answer blockquote {
+  border-left: 3px solid #4f46e5;
+  padding-left: 1rem;
+  color: #555;
+  margin-bottom: 0.75rem;
+}
+.answer table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+.answer th, .answer td {
+  border: 1px solid #e0e0e8;
+  padding: 0.4rem 0.75rem;
+  text-align: left;
+}
+.answer th { background: #f8f9ff; font-weight: 600; }
+
+.sources { margin-top: 1rem; }
+.sources h4 { font-size: 0.8rem; color: #888; margin-bottom: 0.4rem; }
+.source-tag {
+  display: inline-block;
+  background: #f0f0f5;
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  margin-right: 0.4rem;
+  margin-bottom: 0.3rem;
+  color: #555;
+}
+
+/* Metrics */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.metric {
+  text-align: center;
+  padding: 1rem 0.5rem;
+  border-radius: 8px;
+  background: #f8f9ff;
+  border: 1px solid #e8eaf6;
+}
+.metric.empty { opacity: 0.4; }
+.metric-label { display: block; font-size: 0.75rem; color: #666; margin-bottom: 0.4rem; }
+.metric-value { display: block; font-size: 1.5rem; font-weight: 700; color: #4f46e5; }
+
+/* History */
+.collapsible { cursor: pointer; user-select: none; }
+.collapsible:hover { color: #4f46e5; }
+.history { display: flex; flex-direction: column; gap: 0.75rem; }
+.history-row {
+  padding: 0.75rem;
+  background: #f8f8fb;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+.history-query { font-size: 0.9rem; margin-bottom: 0.4rem; font-weight: 500; }
+.history-meta { display: flex; gap: 0.75rem; font-size: 0.8rem; color: #666; flex-wrap: wrap; align-items: center; }
+.badge { padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.75rem; }
+.badge.ok { background: #e8f5e9; color: #2e7d32; }
+.badge.low { background: #fff3e0; color: #e65100; }
+.empty-state { color: #aaa; font-size: 0.9rem; }
+
+@media (max-width: 640px) {
+  .top-row { grid-template-columns: 1fr; }
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  .query-form { flex-direction: column; }
+}

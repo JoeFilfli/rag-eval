@@ -1,0 +1,27 @@
+fastapi==0.136.1
+uvicorn==0.46.0
+python-multipart==0.0.27
+pydantic-settings==2.14.0
+python-dotenv==1.2.2
+psycopg2-binary==2.9.12
+
+# Parser
+PyMuPDF==1.27.2.3
+
+# Embedder / Retriever
+llama-index-core==0.14.21
+llama-index-vector-stores-postgres==0.8.1
+llama-index-embeddings-openai==0.6.0
+
+# LLM clients
+openai==2.33.0
+anthropic==0.97.0
+
+# Rate limiting
+slowapi==0.1.9
+
+# Ragas evaluation
+ragas==0.4.3
+langchain-openai==1.2.1
+langchain-anthropic==1.4.2
+datasets==4.8.5
