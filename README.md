@@ -2,6 +2,8 @@
 
 A RAG pipeline with Self-RAG retrieval and automated Ragas evaluation. Upload PDFs, ask questions, get answers with faithfulness and relevancy scores.
 
+![UI](assets/ui.png)
+
 ## Stack
 
 - **Backend** — FastAPI + LlamaIndex + pgvector
